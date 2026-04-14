@@ -33,7 +33,7 @@ if st.button("Click here to get the Prediction"):
     # 4. Scale and Predict
     scaled_features=[]
     for i in x_num:
-        scaled_features.append(scaler.transform(i))
+        scaled_features.append(scaler.transform([i]))
     for i in x_cat:
         scaled_features.append(le.transform(i))
                            
