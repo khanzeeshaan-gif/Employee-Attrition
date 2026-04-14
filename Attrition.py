@@ -14,7 +14,7 @@ st.title("Employee Attrition Predictor")
 # 2. Input fields
 Age = st.number_input("Age",18,60,21)
 JobLevel = st.number_input("JobLevel"1,5,2)
-YearsAtCompany = st.number_input("YearsAtCompany,0,40,5)
+YearsAtCompany = st.number_input("YearsAtCompany",0,40,5)
 MonthlyIncome = st.number_input("MonthlyIncome")
 JobSatisfaction = st.number_input("JobSatisfaction",0,5,2)
 WorkLifeBalance = st.number_input("WorkLifeBalance",1,5,4)
