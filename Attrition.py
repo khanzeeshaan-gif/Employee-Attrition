@@ -31,9 +31,12 @@ if st.button("Click here to get the Prediction"):
     x_num=[Age,JobLevel,YearsAtCompany,MonthlyIncome,JobSatisfaction,WorkLifeBalance,DistanceFromHome,PerformanceRating,TrainingHoursLastYear]
     
     # 4. Scale and Predict
-    scaled_features = scaler.transform(x_num)
-    Label_Encoded_features = le.transform(x_cat)
-    scaled_features.extend(Label_Encoded_features)
+    scaled_features=[]
+    for i in x_num:
+        scaled_features.append(scaler.transform(i))
+    for i in x_cat:
+        scaled_features.append(le.transform(i)
+                           
     arr = np.array(scaled_features).reshape(1,12)
     prediction = model.predict(arr)
     
