@@ -22,7 +22,7 @@ DistanceFromHome = st.number_input("DistanceFromHome")
 PerformanceRating = st.number_input("PerformanceRating",0,5,4)
 TrainingHoursLastYear = st.number_input("TrainingHoursLastYear")
 Department = st.text_input("Engineering,Finance,HR,IT,Marketing,Operations,Sales")
-OverTime = st.text_input("Enter Yes or No ONLY")
+OverTime = st.text_input("Enter Yes or No")
 PromotionLast5Years = st.text_input("Enter Yes or No ONLY")
 
 if st.button("Click here to get the Prediction"):
