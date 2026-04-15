@@ -15,10 +15,10 @@ st.title("Employee Attrition Predictor")
 Age = st.number_input("Age",18,60,21)
 JobLevel = st.number_input("JobLevel",1,5,2)
 YearsAtCompany = st.number_input("YearsAtCompany",0,40,5)
-MonthlyIncome = st.number_input("MonthlyIncome")
+MonthlyIncome = st.number_input("MonthlyIncome",min_value=1000)
 JobSatisfaction = st.number_input("JobSatisfaction",0,5,2)
 WorkLifeBalance = st.number_input("WorkLifeBalance",1,5,4)
-DistanceFromHome = st.number_input("DistanceFromHome")
+DistanceFromHome = st.number_input("DistanceFromHome",min_value=1)
 PerformanceRating = st.number_input("PerformanceRating",0,5,4)
 TrainingHoursLastYear = st.number_input("TrainingHoursLastYear")
 Department = st.selectbox("Department",["Engineering","Finance","HR","IT","Marketing","Operations,Sales"])
@@ -29,12 +29,17 @@ if st.button("Click here to get the Prediction"):
     # 3. Create feature list (Ensure order matches your training data!)
     x_cat=[Department,OverTime,PromotionLast5Years]
     x_num=[Age,JobLevel,YearsAtCompany,MonthlyIncome,JobSatisfaction,WorkLifeBalance,DistanceFromHome,PerformanceRating,TrainingHoursLastYear]
-    x_num=np.array(x_num).reshape(1,-1)
+    
     
     # 4. Scale and Predict
     scaled_features=[]
-    scaled_features.append(scaler.transform(x_num))
+    x_num = scaler.transform(x_num)[0]
+    scaled_features.extend(x_num)
     for i in x_cat:
+        if i in le.classes_:
+            encoded= le.transform([i])[0]
+        else:
+            encoded = 0
         scaled_features.append(le.transform([i]))
                            
     arr = np.array(scaled_features).reshape(1,12)
