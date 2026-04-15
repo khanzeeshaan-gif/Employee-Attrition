@@ -33,14 +33,18 @@ if st.button("Click here to get the Prediction"):
     
     # 4. Scale and Predict
     scaled_features=[]
-    x_num = scaler.transform(x_num)[0]
+    x_num = scaler.transform(np.array(x_num).reshape(1,-1))[0]
     scaled_features.extend(x_num)
     for i in x_cat:
         if i in le.classes_:
             encoded= le.transform([i])[0]
         else:
             encoded = 0
-        scaled_features.append(le.transform([i]))
+        scaled_features.append(encoded)
+    
+    st.write("Final Features:", scaled_features)
+    st.write("Length:", len(scaled_features))
+
                            
     arr = np.array(scaled_features).reshape(1,12)
     prediction = model.predict(arr)
