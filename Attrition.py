@@ -41,10 +41,6 @@ if st.button("Click here to get the Prediction"):
         else:
             encoded = 0
         scaled_features.append(encoded)
-    
-    st.write("Final Features:", scaled_features)
-    st.write("Length:", len(scaled_features))
-
                            
     arr = np.array(scaled_features).reshape(1,12)
     prediction = model.predict(arr)
