@@ -35,7 +35,7 @@ if st.button("Click here to get the Prediction"):
     scaled_features=[]
     scaled_features.append(scaler.transform(x_num))
     for i in x_cat:
-        scaled_features.append(le.transform([i])
+        scaled_features.append(le.transform([i]))
                            
     arr = np.array(scaled_features).reshape(1,12)
     prediction = model.predict(arr)
