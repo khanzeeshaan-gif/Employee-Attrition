@@ -21,21 +21,21 @@ WorkLifeBalance = st.number_input("WorkLifeBalance",1,5,4)
 DistanceFromHome = st.number_input("DistanceFromHome")
 PerformanceRating = st.number_input("PerformanceRating",0,5,4)
 TrainingHoursLastYear = st.number_input("TrainingHoursLastYear")
-Department = st.text_input("Engineering,Finance,HR,IT,Marketing,Operations,Sales")
-OverTime = st.text_input("Enter Yes or No")
-PromotionLast5Years = st.text_input("Enter Yes or No ONLY")
+Department = st.selectbox("Department",["Engineering","Finance","HR","IT","Marketing","Operations,Sales"])
+OverTime = st.selectbox("Overtime", ["Yes","No"])
+PromotionLast5Years = st.selectbox("PromotionLast5Years",["Yes","No"])
 
 if st.button("Click here to get the Prediction"):
     # 3. Create feature list (Ensure order matches your training data!)
     x_cat=[Department,OverTime,PromotionLast5Years]
     x_num=[Age,JobLevel,YearsAtCompany,MonthlyIncome,JobSatisfaction,WorkLifeBalance,DistanceFromHome,PerformanceRating,TrainingHoursLastYear]
+    x_num=np.array(x_num).reshape(1,-1)
     
     # 4. Scale and Predict
     scaled_features=[]
-    for i in x_num:
-        scaled_features.append(scaler.transform([i]))
+    scaled_features.append(scaler.transform(x_num))
     for i in x_cat:
-        scaled_features.append(le.transform(i))
+        scaled_features.append(le.transform([i])
                            
     arr = np.array(scaled_features).reshape(1,12)
     prediction = model.predict(arr)
